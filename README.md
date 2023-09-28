@@ -50,18 +50,6 @@ terraform state replace-provider registry.terraform.io/-/archive  registry.terra
 
         **Note**: Make sure to have AWS CLI version `2.x` installed.
 
-- **You must have Docker installed**
-
-    1. To check if it's installed, run:
-
-        ```bash
-        docker version
-        ```
-
-    2. If Docker is not installed or to upgrade the version, refer [this doc](https://docs.docker.com/engine/install/).
-
-        **Note**: Make sure the major Docker version `20.x` is installed.
-
 - **You must have kubectl(>= v1.23) installed**
 
     1. To check if it's installed, run:
