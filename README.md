@@ -61,6 +61,8 @@ terraform state replace-provider registry.terraform.io/-/archive  registry.terra
     2. If kubectl is not installed or to upgrade the version, refer [this doc](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 
 - **Connection for the CodePipeline must be created beforehand**
+- **Update the argocd-ssh-key and Netrc parameter values in aws parameter store post infrastructure creation using terraform**
+- **Add the microservice configuration in S3 bucket within respective microservice folder names**
 
 ## What this code creates?
 
@@ -95,17 +97,15 @@ terraform state replace-provider registry.terraform.io/-/archive  registry.terra
     - Metrics Servers
     - Prometheus (using helm)
     - Grafana (using helm)
-    - Calico
     - EBS CSI controller
     - EFS CSI controller
-    - CNI Metrics Helper
-    - Kubernetes Dashboard 
-    - Container Insight
+    - Service Account
     - ArgoCD
   
   
 * `CICD (sample nginx application)` (as part of the base infra)
     - AWS S3 bucket for CodePipeline
+    - AWS S3 bucket for microservice configurations
     - AWS CodePipeline
     - AWS CodeBuild project
     - AWS IAM policy and role for CodeBuild and CodePipeline
@@ -115,6 +115,7 @@ terraform state replace-provider registry.terraform.io/-/archive  registry.terra
 
     * VPC
     * EFS
+    * ECR
 
 - Similarly, creation of the following resources in `kubernetes_service_infra` are controlled by a boolean flag. To create these resources, their respective flags must be set to `true`, else `false`.
 
@@ -125,19 +126,8 @@ terraform state replace-provider registry.terraform.io/-/archive  registry.terra
     * Prometheus
     * EBS CSI
     * EFS CSI
-    * Calico
-    * CNI Metrics Helper
-    * Kubernetes Dashboard 
-    * Container Insight
+    * Service Account
     * ArgoCD
-
-## This code works with given versions of the following software
-* Calico >= 3.25.0                       
-* Grafana >= 6.50.6
-* Prometheus >= 44.3.0
-* CNI Metrics Helper >= 0.1.15
-* Kubernetes Dashboard >= 5.4.1
-* Argo-CD >= 5.28.1
 
 ## Attaching Policies to the Node Role
 
